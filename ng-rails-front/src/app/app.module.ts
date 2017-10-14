@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { MaterializeModule } from 'angular2-materialize';
+import { Angular2TokenService } from 'angular2-token';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -13,9 +15,10 @@ import { MaterializeModule } from 'angular2-materialize';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterializeModule
+    MaterializeModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [ Angular2TokenService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
