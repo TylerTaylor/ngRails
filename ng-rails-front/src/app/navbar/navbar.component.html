@@ -4,10 +4,21 @@
       <a routerLink="/" class="brand-logo" id="logo-container">ngRails</a>
 
       <ul class="right">
-        <li><a (click)="presentAuthDialog()">LOGIN</a></li>
-        <li><a (click)="presentAuthDialog('register')">REGISTER</a></li>
-        <li><a>PROFILE</a></li>
-        <li><a>LOGOUT</a></li>
+        <!-- If the user isn't signed in, display login and register links -->
+        <li *ngIf="!tokenAuthService.userSignedIn()">
+          <a (click)="presentAuthDialog()">LOGIN</a>
+        </li>
+        <li *ngIf="!tokenAuthService.userSignedIn()">
+          <a (click)="presentAuthDialog('register')">REGISTER</a>
+        </li>
+
+        <!-- If the user IS signed in, display profile and logout links -->
+        <li *ngIf="tokenAuthService.userSignedIn()">
+          <a>PROFILE</a>
+        </li>
+        <li *ngIf="tokenAuthService.userSignedIn()">
+          <a (click)="tokenAuthService.signOut()">LOGOUT</a>
+        </li>
       </ul>
     </div>
   </nav>
