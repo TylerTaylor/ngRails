@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -34,7 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ Angular2TokenService, AuthService ],
+  providers: [ Angular2TokenService, AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
