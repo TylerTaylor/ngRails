@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { MaterializeModule } from 'angular2-materialize';
 import { Angular2TokenService } from 'angular2-token';
+import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -31,7 +32,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [ Angular2TokenService ],
+  providers: [ Angular2TokenService, AuthService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

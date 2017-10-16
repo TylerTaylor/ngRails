@@ -3,21 +3,23 @@
     <div class="nav-wrapper blue">
       <a routerLink="/" class="brand-logo" id="logo-container">ngRails</a>
 
-      <ul class="right">
+      <ul class="right hide-on-med-and-down">
+        <!-- Listening to our userSignedIn$ Subject -->
+        <!-- Angular's async pipe listens for changes -->
         <!-- If the user isn't signed in, display login and register links -->
-        <li *ngIf="!tokenAuthService.userSignedIn()">
+        <li *ngIf="!(authService.userSignedIn$ | async)">
           <a (click)="presentAuthDialog()">LOGIN</a>
         </li>
-        <li *ngIf="!tokenAuthService.userSignedIn()">
+        <li *ngIf="!(authService.userSignedIn$ | async)">
           <a (click)="presentAuthDialog('register')">REGISTER</a>
         </li>
 
         <!-- If the user IS signed in, display profile and logout links -->
-        <li *ngIf="tokenAuthService.userSignedIn()">
-          <a>PROFILE</a>
+        <li *ngIf="(authService.userSignedIn$ | async)">
+          <a routerLink="/profile">PROFILE</a>
         </li>
-        <li *ngIf="tokenAuthService.userSignedIn()">
-          <a (click)="tokenAuthService.signOut()">LOGOUT</a>
+        <li *ngIf="(authService.userSignedIn$ | async)">
+          <a (click)="logOut()">LOGOUT</a>
         </li>
       </ul>
     </div>

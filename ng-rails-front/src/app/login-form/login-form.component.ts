@@ -1,4 +1,4 @@
-import { Angular2TokenService } from 'angular2-token';
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
@@ -18,14 +18,14 @@ export class LoginFormComponent implements OnInit {
   // The parent components can then listen and act on it.
   @Output() onFormResult = new EventEmitter<any>();
 
-  constructor(private tokenAuthService:Angular2TokenService) { }
+  constructor(public authService:AuthService) { }
 
   ngOnInit() {
   }
 
   onSignInSubmit(){
 
-    this.tokenAuthService.signIn(this.signInUser).subscribe(
+    this.authService.logInUser(this.signInUser).subscribe(
 
       res => {
         if (res.status == 200){

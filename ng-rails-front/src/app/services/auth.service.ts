@@ -6,6 +6,10 @@ import { Subject, Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
 
+  // userSignedIn$ is a RxJs Subject, which means its an
+  // Observer and an Observable at the same time.
+  // This means we can control its value in our service,
+  // and observe its changes outside of it. $ = stream of data which can change over time
   userSignedIn$:Subject<boolean> = new Subject();
 
   constructor(public authService:Angular2TokenService) {
@@ -19,6 +23,7 @@ export class AuthService {
   logOutUser():Observable<Response>{
     return this.authService.signOut().map(
       res => {
+        // notify our observer that the user has signed out
         this.userSignedIn$.next(false);
         return res;
       }
@@ -28,6 +33,7 @@ export class AuthService {
   registerUser(signUpData: {email:string, password:string, passwordConfirmation:string}):Observable<Response>{
     return this.authService.registerAccount(signUpData).map(
       res => {
+        // notify our observer that the user has signed in
         this.userSignedIn$.next(true);
         return res;
       }
